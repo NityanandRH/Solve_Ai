@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InnovateTool — AI-Powered Innovation Platform</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+<!-- ═══════════════════════════ LOGIN SCREEN ═══════════════════════════ -->
+<div id="login-screen">
+  <div class="login-bg"></div>
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="logo-icon">⚡</div>
+      <h1>InnovateTool</h1>
+      <p>AI-Powered Innovation &amp; Patent Platform</p>
+    </div>
+    <form id="login-form" autocomplete="off">
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" id="login-username" placeholder="Enter username" required />
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="login-password" placeholder="Enter password" required />
+      </div>
+      <div id="login-error" class="error-msg hidden"></div>
+      <button type="submit" class="btn-primary btn-full" id="login-btn">
+        <span>Sign In</span>
+      </button>
+    </form>
+    <p class="login-hint">Demo users: admin / alice / bob / carol</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ MAIN APP ═══════════════════════════════ -->
+<div id="app" class="hidden">
+
+  <!-- SIDEBAR -->
+  <aside id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">⚡ InnovateTool</div>
+      <div class="user-info" id="user-info">
+        <div class="user-avatar" id="user-avatar">U</div>
+        <div class="user-details">
+          <span id="user-name">User</span>
+          <span id="user-role-badge" class="role-badge">user</span>
+        </div>
+        <button class="btn-icon" id="logout-btn" title="Logout">⎋</button>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-header">
+        <span>Sessions</span>
+        <button class="btn-icon btn-accent" id="new-session-btn" title="New Session">＋</button>
+      </div>
+      <div id="sessions-list" class="sessions-list">
+        <div class="empty-state">No sessions yet. Create one to start.</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content">
+
+    <!-- TOP BAR -->
+    <div id="top-bar">
+      <div id="session-title-bar">
+        <span id="current-session-name">Select or create a session</span>
+        <div id="stage-pipeline">
+          <div class="stage-step" data-stage="context">Context</div>
+          <div class="stage-arrow">›</div>
+          <div class="stage-step" data-stage="ideate">Ideate</div>
+          <div class="stage-arrow">›</div>
+          <div class="stage-step" data-stage="analyze">Analyze</div>
+          <div class="stage-arrow">›</div>
+          <div class="stage-step" data-stage="solve">Solve</div>
+          <div class="stage-arrow">›</div>
+          <div class="stage-step" data-stage="triz">TRIZ</div>
+          <div class="stage-arrow">›</div>
+          <div class="stage-step" data-stage="patent">Patent</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB NAV -->
+    <nav id="tab-nav">
+      <button class="tab-btn active" data-tab="context">📋 Context</button>
+      <button class="tab-btn" data-tab="ideate">💡 Ideate</button>
+      <button class="tab-btn" data-tab="analyze">🔍 Analyze</button>
+      <button class="tab-btn" data-tab="solve">⚙️ Solve</button>
+      <button class="tab-btn" data-tab="triz">🧠 TRIZ</button>
+      <button class="tab-btn" data-tab="patent">📄 Patent</button>
+      <button class="tab-btn tab-admin hidden" data-tab="admin">📊 Telemetry</button>
+    </nav>
+
+    <!-- TAB PANELS -->
+    <div id="tab-panels">
+
+      <!-- ── CONTEXT TAB ─────────────────────────────────────────── -->
+      <div class="tab-panel active" id="tab-context">
+        <div class="panel-header">
+          <h2>Set Your Problem Context</h2>
+          <p>Describe the problem you want to solve or the idea you want to develop. This becomes the foundation for all subsequent stages.</p>
+        </div>
+        <div class="context-area">
+          <textarea id="context-input" placeholder="Example: I am planning to design a new laptop lid mechanism to overcome the issue with old loose laptop lids that shake or close automatically during use..." rows="6"></textarea>
+          <div class="context-actions">
+            <span id="context-char-count" class="char-count">0 / 2000</span>
+            <button class="btn-primary" id="save-context-btn">Save &amp; Continue →</button>
+          </div>
+          <div id="context-saved-msg" class="success-banner hidden">
+            ✓ Context saved. Navigate to the <strong>Ideate</strong> tab to begin structured problem definition.
+          </div>
+        </div>
+        <div id="no-session-msg" class="info-banner">
+          ℹ️ Create or select a session from the sidebar to get started.
+        </div>
+      </div>
+
+      <!-- ── IDEATE TAB ──────────────────────────────────────────── -->
+      <div class="tab-panel" id="tab-ideate">
+        <div class="panel-header">
+          <h2>Ideate — Problem Definition</h2>
+          <p>Choose a framework to structure your problem statement through a guided Q&amp;A interview.</p>
+        </div>
+
+        <!-- Method selector -->
+        <div class="method-selector" id="ideate-method-selector">
+          <h3>Select Framework</h3>
+          <div class="radio-group">
+            <label class="radio-card">
+              <input type="radio" name="ideate-method" value="psc" checked />
+              <div class="radio-card-body">
+                <div class="radio-card-title">🗂️ Problem Statement Canvas</div>
+                <div class="radio-card-desc">7-question structured template for defining startup and innovation problems</div>
+              </div>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="ideate-method" value="design_thinking" />
+              <div class="radio-card-body">
+                <div class="radio-card-title">🎨 Design Thinking</div>
+                <div class="radio-card-desc">Human-centered approach: Empathize → Define → Ideate → Prototype → Test</div>
+              </div>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="ideate-method" value="jtbd" />
+              <div class="radio-card-body">
+                <div class="radio-card-title">🎯 Jobs-to-be-Done</div>
+                <div class="radio-card-desc">Focus on the functional and emotional job the user wants to accomplish</div>
+              </div>
+            </label>
+          </div>
+          <button class="btn-primary" id="ideate-start-btn">Start Interview →</button>
+        </div>
+
+        <!-- Q&A Interface -->
+        <div class="ideate-interview hidden" id="ideate-interview">
+          <div class="interview-header">
+            <div class="interview-method-badge" id="ideate-method-badge">PSC</div>
+            <div class="interview-progress">
+              <span id="ideate-progress-text">Question 1 of 7</span>
+              <div class="progress-bar">
+                <div class="progress-fill" id="ideate-progress-fill"></div>
+              </div>
+            </div>
+            <button class="btn-secondary btn-sm" id="ideate-change-method-btn">Change Framework</button>
+          </div>
+
+          <div class="question-card" id="ideate-question-card">
+            <div class="question-number" id="ideate-q-number">Q1</div>
+            <div class="question-text" id="ideate-q-text"></div>
+            <div class="question-suggestion" id="ideate-q-suggestion">
+              <div class="suggestion-label">💡 AI Suggestion</div>
+              <div class="suggestion-text" id="ideate-suggestion-text">Generating context-aware hint...</div>
+            </div>
+          </div>
+
+          <div class="answer-area" id="ideate-answer-area">
+            <textarea id="ideate-answer-input" placeholder="Type your answer here..." rows="3"></textarea>
+            <div class="answer-actions">
+              <button class="btn-primary" id="ideate-submit-answer-btn">Submit Answer →</button>
+            </div>
+          </div>
+
+          <!-- Completed state -->
+          <div class="completed-banner hidden" id="ideate-completed-banner">
+            <span class="completed-icon">✓</span>
+            <span>All questions answered! Review your answers below or generate a summary.</span>
+          </div>
+
+          <!-- Answers review -->
+          <div class="answers-review hidden" id="ideate-answers-review">
+            <h3>Your Answers <span class="sub-hint">(click any answer to modify)</span></h3>
+            <div id="ideate-answers-list"></div>
+          </div>
+
+          <div class="summary-section" id="ideate-summary-section">
+            <button class="btn-accent" id="ideate-summary-btn">📋 Generate Summary</button>
+            <div class="summary-output hidden" id="ideate-summary-output">
+              <h3>Ideate Stage Summary</h3>
+              <div id="ideate-summary-text" class="markdown-output"></div>
+              <button class="btn-secondary" id="ideate-summary-confirm-btn">✓ Confirm &amp; Proceed to Analyze</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modify modal -->
+        <div class="modal hidden" id="ideate-modify-modal">
+          <div class="modal-overlay"></div>
+          <div class="modal-box">
+            <h3>Modify Answer</h3>
+            <div class="modal-question" id="modify-question-text"></div>
+            <textarea id="modify-answer-input" rows="4" placeholder="Enter your updated answer..."></textarea>
+            <div class="modal-actions">
+              <button class="btn-secondary" id="modify-cancel-btn">Cancel</button>
+              <button class="btn-primary" id="modify-save-btn">Save Changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── ANALYZE TAB ─────────────────────────────────────────── -->
+      <div class="tab-panel" id="tab-analyze">
+        <div class="panel-header">
+          <h2>Analyze — Deep Problem Analysis</h2>
+          <p>Apply a structured analysis framework to uncover root causes and hidden dynamics of your problem.</p>
+        </div>
+
+        <div class="method-selector" id="analyze-method-selector">
+          <h3>Select Analysis Method</h3>
+          <div class="radio-group">
+            <label class="radio-card">
+              <input type="radio" name="analyze-method" value="5why" checked />
+              <div class="radio-card-body">
+                <div class="radio-card-title">🔎 5-Why Analysis</div>
+                <div class="radio-card-desc">Ask "Why?" five times to drill down to the true root cause of a problem</div>
+              </div>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="analyze-method" value="swot" />
+              <div class="radio-card-body">
+                <div class="radio-card-title">📊 SWOT Analysis</div>
+                <div class="radio-card-desc">Map Strengths, Weaknesses, Opportunities and Threats for strategic clarity</div>
+              </div>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="analyze-method" value="fishbone" />
+              <div class="radio-card-body">
+                <div class="radio-card-title">🐟 Fishbone (Ishikawa)</div>
+                <div class="radio-card-desc">Categorize causes across People, Process, Materials, Machines, Environment, Methods</div>
+              </div>
+            </label>
+          </div>
+          <button class="btn-primary" id="analyze-start-btn">Start Analysis →</button>
+        </div>
+
+        <div class="ideate-interview hidden" id="analyze-interview">
+          <div class="interview-header">
+            <div class="interview-method-badge" id="analyze-method-badge">5-WHY</div>
+            <div class="interview-progress">
+              <span id="analyze-progress-text">Step 1</span>
+              <div class="progress-bar">
+                <div class="progress-fill" id="analyze-progress-fill"></div>
+              </div>
+            </div>
+            <button class="btn-secondary btn-sm" id="analyze-change-method-btn">Change Method</button>
+          </div>
+
+          <div class="question-card" id="analyze-question-card">
+            <div class="question-number" id="analyze-q-number">Step 1</div>
+            <div class="question-text" id="analyze-q-text"></div>
+            <div class="question-suggestion" id="analyze-q-suggestion">
+              <div class="suggestion-label">💡 AI Insight</div>
+              <div class="suggestion-text" id="analyze-suggestion-text">Generating context-aware hint...</div>
+            </div>
+          </div>
+
+          <div class="answer-area">
+            <textarea id="analyze-answer-input" placeholder="Type your answer here..." rows="3"></textarea>
+            <div class="answer-actions">
+              <button class="btn-primary" id="analyze-submit-answer-btn">Submit →</button>
+            </div>
+          </div>
+
+          <div class="completed-banner hidden" id="analyze-completed-banner">
+            <span class="completed-icon">✓</span>
+            <span>Analysis complete! Generate a summary to capture insights.</span>
+          </div>
+
+          <div class="answers-review hidden" id="analyze-answers-review">
+            <div id="analyze-answers-list"></div>
+          </div>
+
+          <div class="summary-section" id="analyze-summary-section">
+            <button class="btn-accent" id="analyze-summary-btn">📊 Generate Analysis Summary</button>
+            <div class="summary-output hidden" id="analyze-summary-output">
+              <h3>Analysis Summary</h3>
+              <div id="analyze-summary-text" class="markdown-output"></div>
+              <button class="btn-secondary" id="analyze-summary-confirm-btn">✓ Confirm &amp; Proceed to Solve</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SOLVE TAB ───────────────────────────────────────────── -->
+      <div class="tab-panel" id="tab-solve">
+        <div class="panel-header">
+          <h2>Solve — Solution Development</h2>
+          <p>Explore all possible solutions with an expert AI consultant. The AI will always follow up to help tailor the perfect solution.</p>
+        </div>
+
+        <div class="solve-init" id="solve-init">
+          <div class="info-card">
+            <div class="info-card-icon">⚙️</div>
+            <div>
+              <strong>Context-Aware Solution Space</strong>
+              <p>The AI will use all your Ideate and Analyze insights to generate targeted, comprehensive solutions.</p>
+            </div>
+          </div>
+          <button class="btn-primary" id="solve-init-btn">Begin Solution Exploration →</button>
+        </div>
+
+        <div class="chat-interface hidden" id="solve-chat-interface">
+          <div class="chat-messages" id="solve-messages"></div>
+          <div class="chat-input-area">
+            <textarea id="solve-input" placeholder="Ask about specific solutions, trade-offs, implementation details..." rows="2"></textarea>
+            <button class="btn-send" id="solve-send-btn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TRIZ TAB ────────────────────────────────────────────── -->
+      <div class="tab-panel" id="tab-triz">
+        <div class="panel-header">
+          <h2>TRIZ — Theory of Inventive Problem Solving</h2>
+          <p>Apply the world's most powerful systematic innovation methodology to your problem.</p>
+        </div>
+
+        <div class="triz-selector" id="triz-selector">
+          <h3>Select TRIZ Level</h3>
+          <div class="radio-group">
+            <label class="radio-card">
+              <input type="radio" name="triz-level" value="1" checked />
+              <div class="radio-card-body">
+                <div class="radio-card-title">Level 1 — Basic Principles</div>
+                <div class="radio-card-desc">Function Analysis, Root Cause Chains, Trimming, Resources, 9 Windows. Best for ~32% of innovations.</div>
+              </div>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="triz-level" value="2" />
+              <div class="radio-card-body">
+                <div class="radio-card-title">Level 2 — Engineering Contradictions</div>
+                <div class="radio-card-desc">Contradiction Matrix, 40 Inventive Principles, Physical Contradiction Separation</div>
+              </div>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="triz-level" value="3" />
+              <div class="radio-card-body">
+                <div class="radio-card-title">Level 3 — Systemic Changes</div>
+                <div class="radio-card-desc">Su-Field Analysis, 76 Standard Solutions, Scientific Effects Database</div>
+              </div>
+            </label>
+          </div>
+
+          <div class="triz-tool-selector">
+            <label>Select Tool</label>
+            <select id="triz-tool-select" class="styled-select"></select>
+          </div>
+
+          <!-- L2 Contradiction Matrix extras -->
+          <div class="triz-matrix-params hidden" id="triz-matrix-params">
+            <h4>Contradiction Parameters</h4>
+            <div class="param-row">
+              <div class="form-group">
+                <label>Improving Parameter</label>
+                <select id="triz-improving-param" class="styled-select"></select>
+              </div>
+              <div class="form-group">
+                <label>Worsening Parameter</label>
+                <select id="triz-worsening-param" class="styled-select"></select>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn-primary" id="triz-analyze-btn">Run TRIZ Analysis →</button>
+        </div>
+
+        <div class="triz-results hidden" id="triz-results">
+          <div class="triz-result-header">
+            <div class="interview-method-badge" id="triz-result-badge">FA</div>
+            <span id="triz-result-title">Function Analysis Results</span>
+            <button class="btn-secondary btn-sm" id="triz-new-analysis-btn">New Analysis</button>
+          </div>
+          <div id="triz-analysis-output" class="markdown-output stream-target"></div>
+
+          <div class="chat-interface" id="triz-chat-section">
+            <h3>Follow-up Discussion</h3>
+            <div class="chat-messages" id="triz-messages"></div>
+            <div class="chat-input-area">
+              <textarea id="triz-input" placeholder="Ask follow-up questions about the TRIZ analysis..." rows="2"></textarea>
+              <button class="btn-send" id="triz-send-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PATENT TAB ──────────────────────────────────────────── -->
+      <div class="tab-panel" id="tab-patent">
+        <div class="panel-header">
+          <h2>Patent — IP Strategy &amp; Documentation</h2>
+          <p>Generate patent claims, analyze prior art, design circumvention strategies, and produce a full draft patent document.</p>
+        </div>
+
+        <div class="patent-workflow">
+          <!-- Step 1: Generate Claims -->
+          <div class="patent-step" id="patent-step-claims">
+            <div class="patent-step-header">
+              <div class="step-number">1</div>
+              <div class="step-info">
+                <strong>Patent Claims</strong>
+                <span>Generate independent and dependent claims from your innovation</span>
+              </div>
+              <button class="btn-primary btn-sm" id="patent-generate-claims-btn">Generate Claims</button>
+            </div>
+            <div class="patent-step-output hidden" id="patent-claims-output">
+              <div id="patent-claims-text" class="markdown-output code-style"></div>
+            </div>
+          </div>
+
+          <!-- Step 2: Prior Art Analysis -->
+          <div class="patent-step" id="patent-step-prior-art">
+            <div class="patent-step-header">
+              <div class="step-number">2</div>
+              <div class="step-info">
+                <strong>Prior Art Analysis</strong>
+                <span>Analyze the patent landscape and assess patentability</span>
+              </div>
+              <button class="btn-primary btn-sm" id="patent-prior-art-btn" disabled>Analyze Prior Art</button>
+            </div>
+            <div class="patent-step-output hidden" id="patent-prior-art-output">
+              <div id="patent-prior-art-text" class="markdown-output"></div>
+            </div>
+          </div>
+
+          <!-- Step 3: Circumvention Analysis -->
+          <div class="patent-step" id="patent-step-circumvent">
+            <div class="patent-step-header">
+              <div class="step-number">3</div>
+              <div class="step-info">
+                <strong>Circumvention Strategy</strong>
+                <span>Identify design-around strategies and close claim gaps</span>
+              </div>
+              <button class="btn-primary btn-sm" id="patent-circumvent-btn" disabled>Analyze Circumvention</button>
+            </div>
+            <div class="patent-step-output hidden" id="patent-circumvent-output">
+              <div id="patent-circumvent-text" class="markdown-output"></div>
+            </div>
+          </div>
+
+          <!-- Step 4: Full Patent Draft -->
+          <div class="patent-step" id="patent-step-draft">
+            <div class="patent-step-header">
+              <div class="step-number">4</div>
+              <div class="step-info">
+                <strong>Full Patent Draft</strong>
+                <span>Generate a complete patent application document</span>
+              </div>
+              <button class="btn-accent btn-sm" id="patent-draft-btn" disabled>Generate Draft Document</button>
+            </div>
+            <div class="patent-step-output hidden" id="patent-draft-output">
+              <div id="patent-draft-text" class="markdown-output"></div>
+              <div class="draft-actions">
+                <button class="btn-secondary" id="patent-copy-btn">📋 Copy Draft</button>
+                <button class="btn-secondary" id="patent-print-btn">🖨️ Export PDF</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 5: Patent Search Strings -->
+          <div class="patent-step" id="patent-step-search-strings">
+            <div class="patent-step-header">
+              <div class="step-number">5</div>
+              <div class="step-info">
+                <strong>Patent Search Strings</strong>
+                <span>Generate ready-to-use search strings for Google Patents, Espacenet, USPTO, Orbit &amp; Derwent</span>
+              </div>
+              <button class="btn-secondary btn-sm" id="patent-search-strings-btn">🔍 Generate Search Strings</button>
+            </div>
+            <div class="patent-step-output hidden" id="patent-search-strings-output">
+              <div id="patent-search-strings-text" class="markdown-output code-style"></div>
+              <div class="draft-actions">
+                <button class="btn-secondary" id="patent-search-copy-btn">📋 Copy All Strings</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── ADMIN TAB ───────────────────────────────────────────── -->
+      <div class="tab-panel" id="tab-admin">
+        <div class="panel-header">
+          <h2>Team Telemetry Dashboard</h2>
+          <p>Monitor user activity, token consumption, and innovation pipeline progress across the team.</p>
+        </div>
+
+        <div class="admin-grid">
+          <!-- KPI Cards -->
+          <div class="kpi-row" id="admin-kpis">
+            <div class="kpi-card">
+              <div class="kpi-value" id="kpi-users">—</div>
+              <div class="kpi-label">Total Users</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-value" id="kpi-sessions">—</div>
+              <div class="kpi-label">Total Sessions</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-value" id="kpi-tokens">—</div>
+              <div class="kpi-label">Total Tokens Used</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-value" id="kpi-completions">—</div>
+              <div class="kpi-label">Stage Completions</div>
+            </div>
+          </div>
+
+          <!-- Charts Row -->
+          <div class="charts-row">
+            <div class="chart-card">
+              <h3>Token Usage by User</h3>
+              <canvas id="token-chart"></canvas>
+            </div>
+            <div class="chart-card">
+              <h3>Stage Completion Rate</h3>
+              <canvas id="stage-chart"></canvas>
+            </div>
+          </div>
+
+          <!-- Daily Usage Chart -->
+          <div class="chart-card-wide">
+            <h3>Daily Token Consumption (30 days)</h3>
+            <canvas id="daily-chart"></canvas>
+          </div>
+
+          <!-- User Pipeline Table -->
+          <div class="table-card">
+            <h3>User Pipeline Status</h3>
+            <div class="table-wrapper">
+              <table id="user-pipeline-table">
+                <thead>
+                  <tr>
+                    <th>User</th>
+                    <th>Sessions</th>
+                    <th>Tokens</th>
+                    <th>Context</th>
+                    <th>Ideate</th>
+                    <th>Analyze</th>
+                    <th>Solve</th>
+                    <th>TRIZ</th>
+                    <th>Patent</th>
+                  </tr>
+                </thead>
+                <tbody id="pipeline-table-body"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Admin Chat -->
+          <div class="admin-chat-card">
+            <h3>💬 Chat with Telemetry AI</h3>
+            <p class="sub-hint">Ask questions about team usage, progress, and bottlenecks.</p>
+            <div class="chat-messages" id="admin-messages"></div>
+            <div class="chat-input-area">
+              <textarea id="admin-chat-input" placeholder="E.g. Which user has the highest token usage? Who has completed TRIZ?" rows="2"></textarea>
+              <button class="btn-send" id="admin-chat-send-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-refresh">
+          <button class="btn-secondary" id="admin-refresh-btn">🔄 Refresh Data</button>
+        </div>
+      </div>
+
+    </div><!-- /tab-panels -->
+  </main>
+</div><!-- /app -->
+
+<!-- New Session Modal -->
+<div class="modal hidden" id="new-session-modal">
+  <div class="modal-overlay" id="new-session-overlay"></div>
+  <div class="modal-box">
+    <h3>New Innovation Session</h3>
+    <div class="form-group">
+      <label>Session Name</label>
+      <input type="text" id="new-session-name" placeholder="e.g. Laptop Hinge Redesign" />
+    </div>
+    <div class="modal-actions">
+      <button class="btn-secondary" id="new-session-cancel-btn">Cancel</button>
+      <button class="btn-primary" id="new-session-create-btn">Create Session</button>
+    </div>
+  </div>
+</div>
+
+<!-- Rename Session Modal -->
+<div class="modal hidden" id="rename-session-modal">
+  <div class="modal-overlay" id="rename-session-overlay"></div>
+  <div class="modal-box">
+    <h3>Rename Session</h3>
+    <div class="form-group">
+      <label>New Name</label>
+      <input type="text" id="rename-session-input" placeholder="Session name" />
+    </div>
+    <input type="hidden" id="rename-session-id" />
+    <div class="modal-actions">
+      <button class="btn-secondary" id="rename-cancel-btn">Cancel</button>
+      <button class="btn-primary" id="rename-save-btn">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast notification -->
+<div id="toast" class="toast hidden"></div>
+
+<!-- Loading overlay -->
+<div id="loading-overlay" class="hidden">
+  <div class="spinner"></div>
+</div>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
