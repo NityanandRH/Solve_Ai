@@ -1,0 +1,12 @@
+fastapi
+uvicorn[standard]
+openai
+python-dotenv
+langgraph
+langchain
+langchain-openai
+pydantic
+python-jose[cryptography]
+passlib[bcrypt]
+python-multipart
+aiosqlite
