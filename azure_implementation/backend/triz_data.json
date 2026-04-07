@@ -1,0 +1,457 @@
+{
+  "engineering_parameters": {
+    "1": "Weight of moving object",
+    "2": "Weight of stationary object",
+    "3": "Length of moving object",
+    "4": "Length of stationary object",
+    "5": "Area of moving object",
+    "6": "Area of stationary object",
+    "7": "Volume of moving object",
+    "8": "Volume of stationary object",
+    "9": "Speed",
+    "10": "Force",
+    "11": "Stress or pressure",
+    "12": "Shape",
+    "13": "Stability of the object's composition",
+    "14": "Strength",
+    "15": "Duration of action by a moving object",
+    "16": "Duration of action by a stationary object",
+    "17": "Temperature",
+    "18": "Illumination intensity",
+    "19": "Use of energy by moving object",
+    "20": "Use of energy by stationary object",
+    "21": "Power",
+    "22": "Loss of Energy",
+    "23": "Loss of substance",
+    "24": "Loss of Information",
+    "25": "Loss of Time",
+    "26": "Quantity of substance/the matter",
+    "27": "Reliability",
+    "28": "Measurement accuracy",
+    "29": "Manufacturing precision",
+    "30": "Object-generated harmful effects",
+    "31": "Harmful side effects",
+    "32": "Ease of manufacture",
+    "33": "Ease of operation",
+    "34": "Ease of repair",
+    "35": "Adaptability or versatility",
+    "36": "Device complexity",
+    "37": "Difficulty of detecting and measuring",
+    "38": "Extent of automation",
+    "39": "Productivity"
+  },
+  "inventive_principles": {
+    "1": {
+      "name": "Segmentation",
+      "description": "Divide an object or system into independent parts; make it sectional; increase the degree of fragmentation.",
+      "examples": ["Modular furniture", "Segmented worm", "Divisible packaging"]
+    },
+    "2": {
+      "name": "Taking out (Extraction)",
+      "description": "Separate an interfering part or property from an object; extract only the necessary part or property.",
+      "examples": ["Noise-cancelling headphones", "Air conditioning", "Exhaust fan"]
+    },
+    "3": {
+      "name": "Local quality",
+      "description": "Transition from a homogeneous structure to a heterogeneous one; make each part function in conditions most suitable for its operation.",
+      "examples": ["Pencil with eraser", "Swiss army knife", "Compound bow"]
+    },
+    "4": {
+      "name": "Asymmetry",
+      "description": "Transition from symmetrical to asymmetrical forms; if an object is asymmetrical, increase its degree of asymmetry.",
+      "examples": ["Asymmetric tires", "Ergonomic tools", "One-sided razor"]
+    },
+    "5": {
+      "name": "Merging",
+      "description": "Bring closer in space the same or similar objects or operations; assemble identical or similar parts for parallel operations.",
+      "examples": ["Combine harvester", "Multi-function printer", "Shared transport"]
+    },
+    "6": {
+      "name": "Universality",
+      "description": "Make a part or object perform multiple functions; eliminate the need for other parts.",
+      "examples": ["Swiss army knife", "Smartphone", "All-in-one shampoo"]
+    },
+    "7": {
+      "name": "Nested doll (Nesting)",
+      "description": "Place one object inside another; pass one object through a cavity in another.",
+      "examples": ["Telescoping antenna", "Nesting dolls", "Retractable seatbelt"]
+    },
+    "8": {
+      "name": "Anti-weight (Counterweight)",
+      "description": "To compensate for the weight of an object, merge it with other objects that provide lifting force.",
+      "examples": ["Counterbalanced crane", "Float valve", "Ballast in submarines"]
+    },
+    "9": {
+      "name": "Preliminary anti-action",
+      "description": "If it is known that an object will experience harmful stress, apply counter-stress in advance.",
+      "examples": ["Pre-stressed concrete", "Anti-corrosion coating", "Vaccine"]
+    },
+    "10": {
+      "name": "Preliminary action",
+      "description": "Perform, before it is needed, the required change of an object; pre-arrange objects so they can come into action from the most convenient position.",
+      "examples": ["Pre-mixed paint", "Arranged surgical tools", "Pre-printed forms"]
+    },
+    "11": {
+      "name": "Beforehand cushioning",
+      "description": "Prepare emergency means in advance to compensate for the relatively low reliability of an object.",
+      "examples": ["Parachute", "Airbag", "Spare tire"]
+    },
+    "12": {
+      "name": "Equipotentiality",
+      "description": "Change the operating condition so that an object need not be raised or lowered.",
+      "examples": ["Pit stop mechanics", "Hydraulic lift", "Car ramp"]
+    },
+    "13": {
+      "name": "The other way round (Inversion)",
+      "description": "Invert the action used to solve the problem; make movable parts fixed, and fixed parts movable.",
+      "examples": ["Moving walkway", "Treadmill", "Inverted umbrella"]
+    },
+    "14": {
+      "name": "Spheroidality - Curvature",
+      "description": "Move from flat surfaces to spherical ones; from linear to rotary motion; use rollers, balls, spirals.",
+      "examples": ["Ball bearings", "Helical gears", "Spiral conveyor"]
+    },
+    "15": {
+      "name": "Dynamics",
+      "description": "Allow the characteristics of an object to change to be optimal at each stage of operation; divide into parts capable of moving.",
+      "examples": ["Adjustable chair", "Flexible hose", "Variable geometry wing"]
+    },
+    "16": {
+      "name": "Partial or excessive actions",
+      "description": "If 100% of an objective is hard to achieve, use slightly less or more.",
+      "examples": ["Overspray then remove", "Oversize then trim", "Slightly exceed then correct"]
+    },
+    "17": {
+      "name": "Another dimension",
+      "description": "Move an object in two or three-dimensional space; use multi-layered arrangement.",
+      "examples": ["Multi-story parking", "Spiral staircase", "3D printing"]
+    },
+    "18": {
+      "name": "Mechanical vibration",
+      "description": "Cause an object to oscillate or vibrate; increase its frequency; use piezoelectric effect.",
+      "examples": ["Ultrasonic cleaning", "Vibrating conveyor", "Electric toothbrush"]
+    },
+    "19": {
+      "name": "Periodic action",
+      "description": "Replace a continuous action with a periodic (pulse) one; if an action is already periodic, change the frequency.",
+      "examples": ["Pulsed laser", "Intermittent wipers", "Pulse jet engine"]
+    },
+    "20": {
+      "name": "Continuity of useful action",
+      "description": "Carry on work continuously; make all parts of an object work at full load all the time.",
+      "examples": ["Continuous casting", "Flywheel", "Conveyor belt"]
+    },
+    "21": {
+      "name": "Skipping (Rushing through)",
+      "description": "Conduct a process, or certain stages, at high speed.",
+      "examples": ["High-speed cutting", "Flash photography", "Quick-freeze"]
+    },
+    "22": {
+      "name": "Blessing in disguise",
+      "description": "Use harmful factors to obtain a positive effect; eliminate the harmful by combining it with other harmful factors.",
+      "examples": ["Using waste heat", "Sand as abrasive", "Noise as signal"]
+    },
+    "23": {
+      "name": "Feedback",
+      "description": "Introduce feedback to improve a process or action; if feedback already exists, change its magnitude or influence.",
+      "examples": ["Thermostat", "ABS brakes", "Self-correcting systems"]
+    },
+    "24": {
+      "name": "Intermediary",
+      "description": "Use an intermediate object to carry, transfer or transmit an action.",
+      "examples": ["Catalytic converter", "Transformer", "Pulley"]
+    },
+    "25": {
+      "name": "Self-service",
+      "description": "Make an object serve itself by performing auxiliary and repair functions; use waste resources and energy.",
+      "examples": ["Self-sharpening blade", "Self-cleaning oven", "Self-healing polymer"]
+    },
+    "26": {
+      "name": "Copying",
+      "description": "Instead of an unavailable or expensive object, use simpler, inexpensive copies; replace a physical object with optical copies.",
+      "examples": ["Virtual reality", "Digital twin", "Hologram"]
+    },
+    "27": {
+      "name": "Cheap short-living objects",
+      "description": "Replace an inexpensive object with an expensive one, sacrificing certain qualities.",
+      "examples": ["Disposable razors", "Single-use sensors", "Paper cups"]
+    },
+    "28": {
+      "name": "Mechanics substitution",
+      "description": "Replace a mechanical system with optical, acoustic, thermal or olfactory systems.",
+      "examples": ["Optical fiber", "Ultrasound imaging", "Infrared sensor"]
+    },
+    "29": {
+      "name": "Pneumatics and hydraulics",
+      "description": "Use gas and liquid parts instead of solid parts of an object.",
+      "examples": ["Air cushion", "Hydraulic press", "Pneumatic tool"]
+    },
+    "30": {
+      "name": "Flexible shells and thin films",
+      "description": "Use flexible shells and thin films instead of 3D structures; isolate objects using flexible shells.",
+      "examples": ["Bubble wrap", "Cling film", "Inflatable structure"]
+    },
+    "31": {
+      "name": "Porous materials",
+      "description": "Make an object porous or use supplementary porous elements; if already porous, fill pores with a substance.",
+      "examples": ["Foam insulation", "Porous bearing", "Sponge"]
+    },
+    "32": {
+      "name": "Color changes",
+      "description": "Change the color of an object or its environment; change the transparency of an object.",
+      "examples": ["Mood ring", "Color-coded cables", "UV indicator"]
+    },
+    "33": {
+      "name": "Homogeneity",
+      "description": "Make objects interacting with the main object from the same material (or material with identical properties).",
+      "examples": ["Ice tray made of ice", "Edible packaging", "Matching materials"]
+    },
+    "34": {
+      "name": "Discarding and recovering",
+      "description": "Make portions of an object that have fulfilled their functions disappear or restore them directly in operation.",
+      "examples": ["Dissolving sutures", "Biodegradable packaging", "Rocket stages"]
+    },
+    "35": {
+      "name": "Parameter changes",
+      "description": "Change an object's physical state; change the concentration or flexibility; change the temperature.",
+      "examples": ["Shape memory alloy", "Phase change material", "Polymer gel"]
+    },
+    "36": {
+      "name": "Phase transitions",
+      "description": "Use phenomena occurring during phase transitions such as volume changes and heat absorption/liberation.",
+      "examples": ["Steam engine", "Heat pipe", "Freeze-drying"]
+    },
+    "37": {
+      "name": "Thermal expansion",
+      "description": "Use thermal expansion or contraction of materials; use materials with different coefficients of thermal expansion.",
+      "examples": ["Bimetallic strip", "Shrink fitting", "Thermostat"]
+    },
+    "38": {
+      "name": "Strong oxidants",
+      "description": "Replace ordinary air with oxygen-enriched air; replace enriched air with pure oxygen.",
+      "examples": ["Oxygen therapy", "Ozone purification", "Combustion enhancers"]
+    },
+    "39": {
+      "name": "Inert atmosphere",
+      "description": "Replace a normal environment with an inert one; carry out the process in a vacuum.",
+      "examples": ["Food preservation", "Welding in inert gas", "Vacuum packaging"]
+    },
+    "40": {
+      "name": "Composite materials",
+      "description": "Transition from homogeneous to composite (multiple) materials.",
+      "examples": ["Carbon fiber", "Fiberglass", "Concrete with rebar"]
+    }
+  },
+  "levels": {
+    "1": {
+      "name": "Basic Principles & Simple Improvements",
+      "description": "Focuses on simple improvements within the same field. Represents ~32% of innovations.",
+      "tools": {
+        "function_analysis": {
+          "name": "Function Analysis (FA)",
+          "description": "Identify components, their functions, and associated costs. Maps useful and harmful interactions between system components.",
+          "prompt_key": "triz_function_analysis"
+        },
+        "ceca": {
+          "name": "Cause-Effect Chain Analysis (CECA)",
+          "description": "Find root causes of problems by tracing cause-effect relationships. Reveals hidden causes behind undesired effects.",
+          "prompt_key": "triz_ceca"
+        },
+        "trimming": {
+          "name": "Trimming",
+          "description": "Simplify the system by removing components while maintaining functions using remaining parts.",
+          "prompt_key": "triz_trimming"
+        },
+        "resources": {
+          "name": "Resources Identification",
+          "description": "Identify and utilize existing resources (space, time, substance, energy) within and around the system.",
+          "prompt_key": "triz_resources"
+        },
+        "nine_windows": {
+          "name": "9 Windows (System Operator)",
+          "description": "Analyze the system across time (past, present, future) and scale (subsystem, system, supersystem).",
+          "prompt_key": "triz_nine_windows"
+        }
+      }
+    },
+    "2": {
+      "name": "Engineering Contradictions",
+      "description": "Solves technical contradictions using established techniques from similar industries.",
+      "tools": {
+        "contradiction_matrix": {
+          "name": "Contradiction Matrix",
+          "description": "A grid linking 39 engineering parameters to select the most relevant inventive principles for your contradiction.",
+          "prompt_key": "triz_contradiction_matrix"
+        },
+        "inventive_principles": {
+          "name": "40 Inventive Principles",
+          "description": "Apply standard inventive techniques (segmentation, taking out, nesting, etc.) to resolve contradictions.",
+          "prompt_key": "triz_inventive_principles"
+        },
+        "physical_contradiction": {
+          "name": "Physical Contradiction Separation",
+          "description": "Separate contradictory requirements in time, space, condition, or between parts and whole.",
+          "prompt_key": "triz_physical_contradiction"
+        }
+      }
+    },
+    "3": {
+      "name": "Physical Contradictions & Systemic Changes",
+      "description": "Significant improvements solving contradictions, often requiring cross-domain knowledge.",
+      "tools": {
+        "su_field": {
+          "name": "Su-Field (Substance-Field) Analysis",
+          "description": "Model system components (two substances and a field) to identify interaction failures and improvements.",
+          "prompt_key": "triz_su_field"
+        },
+        "standard_solutions": {
+          "name": "76 Standard Solutions",
+          "description": "Apply specific rules for improving Su-Field models across 5 classes of solutions.",
+          "prompt_key": "triz_standard_solutions"
+        },
+        "scientific_effects": {
+          "name": "Scientific Effects Database",
+          "description": "Apply principles from physics, chemistry, and geometry to solve problems at a fundamental level.",
+          "prompt_key": "triz_scientific_effects"
+        },
+        "advanced_trimming": {
+          "name": "Advanced Trimming & Functional Modeling",
+          "description": "Complex, system-level redesign using advanced trimming rules and functional models.",
+          "prompt_key": "triz_advanced_trimming"
+        }
+      }
+    }
+  },
+  "psc_questions": [
+    {
+      "id": 1,
+      "question": "Who is facing this problem or will benefit from this solution?",
+      "field": "who",
+      "hint": "Describe the specific user group, customer segment, or stakeholder experiencing this issue."
+    },
+    {
+      "id": 2,
+      "question": "When and where does this problem occur?",
+      "field": "when_where",
+      "hint": "Describe the specific context, environment, or situation in which this problem manifests."
+    },
+    {
+      "id": 3,
+      "question": "What is the root cause of this problem?",
+      "field": "root_cause",
+      "hint": "Go beyond symptoms — what underlying mechanism, design flaw, or missing capability causes this?"
+    },
+    {
+      "id": 4,
+      "question": "What is the impact or consequence of this problem?",
+      "field": "impact",
+      "hint": "Describe the measurable or observable effects — financial, operational, emotional, or social."
+    },
+    {
+      "id": 5,
+      "question": "What solutions or workarounds are currently being used?",
+      "field": "existing_solutions",
+      "hint": "What do people do today to cope with or mitigate this problem? Why do these fall short?"
+    },
+    {
+      "id": 6,
+      "question": "What constraints or limitations must the solution respect?",
+      "field": "constraints",
+      "hint": "Consider cost, regulation, technology availability, user capability, environmental factors."
+    },
+    {
+      "id": 7,
+      "question": "What does an ideal solution look like, and how would you measure success?",
+      "field": "ideal_solution",
+      "hint": "Describe the outcome in measurable terms — what changes, for whom, and by how much?"
+    }
+  ],
+  "design_thinking_questions": [
+    {
+      "id": 1,
+      "question": "Who are your users, and what are their deepest unmet needs?",
+      "field": "empathy_users",
+      "hint": "Think about the human beings at the center of your problem. What do they feel, think, say, and do?"
+    },
+    {
+      "id": 2,
+      "question": "What have you observed about how users currently behave around this problem?",
+      "field": "empathy_observations",
+      "hint": "What behaviours, workarounds, or frustrations have you noticed in real situations?"
+    },
+    {
+      "id": 3,
+      "question": "How would you frame the problem as a 'How Might We' question?",
+      "field": "define_hmw",
+      "hint": "E.g. 'How might we help [user] achieve [goal] without [obstacle]?' Keep it open-ended."
+    },
+    {
+      "id": 4,
+      "question": "What are 3-5 radically different ideas you can think of to address this problem?",
+      "field": "ideate_ideas",
+      "hint": "No idea is too wild at this stage. Think across industries, scales, and technologies."
+    },
+    {
+      "id": 5,
+      "question": "Which idea seems most promising to prototype, and why?",
+      "field": "prototype_choice",
+      "hint": "Consider feasibility, impact, and user desirability. What quick test would validate your key assumption?"
+    },
+    {
+      "id": 6,
+      "question": "How would you test this solution with real users?",
+      "field": "test_method",
+      "hint": "Describe the simplest experiment that would tell you if you're on the right track."
+    },
+    {
+      "id": 7,
+      "question": "What would success look like after testing, and what feedback would change your direction?",
+      "field": "success_criteria",
+      "hint": "What metrics or signals would confirm the solution works? What would make you pivot?"
+    }
+  ],
+  "jtbd_questions": [
+    {
+      "id": 1,
+      "question": "What job is the customer trying to get done when they encounter this problem?",
+      "field": "main_job",
+      "hint": "Think functionally: what progress is the person trying to make in their life or work?"
+    },
+    {
+      "id": 2,
+      "question": "What are the emotional and social dimensions of this job?",
+      "field": "emotional_social",
+      "hint": "How does the user want to feel? How do they want to be perceived by others while doing this job?"
+    },
+    {
+      "id": 3,
+      "question": "What does the user hire (or fire) products/services to help with this job?",
+      "field": "current_hires",
+      "hint": "What products, services, or behaviours are currently being 'hired' to do this job, even imperfectly?"
+    },
+    {
+      "id": 4,
+      "question": "What are the key struggles or 'struggling moments' that prompt the switch?",
+      "field": "struggling_moments",
+      "hint": "What triggers the decision to look for a better solution? Describe a specific situation."
+    },
+    {
+      "id": 5,
+      "question": "What forces push users toward a new solution vs. pull them back to the old one?",
+      "field": "push_pull",
+      "hint": "Consider: push (pain with current), pull (attraction to new), anxiety (fear of change), habit (inertia)."
+    },
+    {
+      "id": 6,
+      "question": "What constraints define the 'outcome metrics' users use to evaluate the job?",
+      "field": "outcome_metrics",
+      "hint": "Speed, accuracy, cost, reliability — what does the user measure to know the job is done well?"
+    },
+    {
+      "id": 7,
+      "question": "What underserved outcomes define the biggest opportunity for innovation?",
+      "field": "opportunity",
+      "hint": "Which outcome metrics are most important to users but least well served by current solutions?"
+    }
+  ]
+}
